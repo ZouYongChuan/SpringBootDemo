@@ -1,0 +1,22 @@
+server:
+  port: 8011
+spring:
+  datasource:
+    db1:
+        jdbcUrl: jdbc:mysql://localhost:3306/mytest?characterEncoding=utf8&useSSL=true
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+    db2:
+        jdbcUrl: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=true
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+query:
+  login:
+    url: /hello?name=default
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file: /var/log/tomcat/sell.log
+#  level: com.imooc.LoggerTest: debug
