@@ -32,7 +32,13 @@ public class UserController {
 
     @GetMapping("/hello")
     public Object sayHello(@RequestParam("name") String name)throws Exception  {
-        System.out.println("name: " + name);
+        //System.out.println("name: " + name);
+        return "hello " + name;
+    }
+
+    @GetMapping("/hello/{name}")
+    public Object sayHelloByPathVariable(@PathVariable("name") String name)throws Exception  {
+        //System.out.println("name: " + name);
         return "hello " + name;
     }
 }
