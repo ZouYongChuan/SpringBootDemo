@@ -1,23 +1,23 @@
 package com.example.demo720.domain.entity;
 
 public class User implements IUser{
-    private Long id;
+    private int id;
     private String name;
     private String password;
     private String phone;
 
-    public User(Long id, String name, String password, String phone) {
+    public User(int id, String name, String password, String phone) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.phone = phone;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

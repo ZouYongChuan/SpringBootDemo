@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.ReactiveRedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -31,6 +33,9 @@ public class Demo720ApplicationTests {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
+    private RedisTemplate<Object,Object> redisTemplate;
+
     private MockMvc mockMvc;
 
     @Before
@@ -49,6 +54,11 @@ public class Demo720ApplicationTests {
                 .andExpect(content().string("hello tom")); // 期望返回值为"hello tom"
     }
 
+    @Test
+    public void setRedis()throws Exception{
+        redisTemplate.opsForValue().set("key1","value1");
+        Assert.assertEquals("value1",redisTemplate.opsForValue().get("key1"));
+    }
 
     @Test
     public void findUserNameByPhoneWithServiceImpl() throws Exception {
@@ -65,14 +75,14 @@ public class Demo720ApplicationTests {
     @Test
     public void findUserByPhone() throws Exception {
         User user=userMapper.findUserByPhone("1");
-        User userExpected=new User((long) 1001, "1","1","1");
+        User userExpected=new User(1001, "1","1","1");
         Assert.assertEquals("1",user.getName());
     }
 
     @Test
     public void test() throws Exception {
-        userMapper.insert("winterchen", "123456", "12345678910");
-        User u = userMapper.findUserByPhone("12345678910");
+        userMapper.insert("winterchen", "123456", "1");
+        User u = userMapper.findUserByPhone("1");
         Assert.assertEquals("winterchen", u.getName());
     }
 
